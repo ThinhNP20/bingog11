@@ -23,6 +23,7 @@ class BingoCaller {
         this.callCountEl = document.getElementById('callCount');
         this.toggleSoundBtn = document.getElementById('toggleSoundBtn');
         this.toggleThemeBtn = document.getElementById('toggleThemeBtn');
+        this.toggleLangBtn = document.getElementById('toggleLangBtn'); // New button
 
         // Rules Modal
         this.rulesBtn = document.getElementById('rulesBtn');
@@ -36,6 +37,7 @@ class BingoCaller {
         this.soundDraw = document.getElementById('soundDraw');
         this.soundWin = document.getElementById('soundWin'); // Optional use
         this.isMuted = false;
+        this.language = localStorage.getItem('bingoLang') || 'vi'; // Default Vietnamese
 
         // State
         this.calledNumbers = new Set();
@@ -52,6 +54,7 @@ class BingoCaller {
         this.setupEventListeners();
         // Initialize speed
         this.updateSpeedDisplay();
+        this.updateLangButton();
     }
 
     setupEventListeners() {
@@ -84,20 +87,42 @@ class BingoCaller {
             this.toggleSoundBtn.querySelector('.btn-icon').textContent = this.isMuted ? '🔇' : '🔊';
         });
 
+        this.toggleLangBtn.addEventListener('click', () => {
+            this.language = this.language === 'vi' ? 'en' : 'vi';
+            localStorage.setItem('bingoLang', this.language);
+            this.updateLangButton();
+        });
+
         this.toggleThemeBtn.addEventListener('click', () => {
             const body = document.body;
+            // Cycle: Default -> Tet -> Premium Tet -> Default
             if (body.classList.contains('theme-tet')) {
+                // Switch to Premium Tet
                 body.classList.remove('theme-tet');
+                body.classList.add('theme-tet-advance');
+                localStorage.setItem('bingoTheme', 'theme-tet-advance');
+                this.toggleThemeBtn.title = "Giao diện: Tết Cao Cấp";
+            } else if (body.classList.contains('theme-tet-advance')) {
+                // Switch to Default
+                body.classList.remove('theme-tet-advance');
                 localStorage.setItem('bingoTheme', 'default');
+                this.toggleThemeBtn.title = "Giao diện: Mặc định";
             } else {
+                // Switch to Tet
                 body.classList.add('theme-tet');
                 localStorage.setItem('bingoTheme', 'theme-tet');
+                this.toggleThemeBtn.title = "Giao diện: Tết Truyền Thống";
             }
         });
 
         // Restore theme
-        if (localStorage.getItem('bingoTheme') === 'theme-tet') {
+        const savedTheme = localStorage.getItem('bingoTheme');
+        if (savedTheme === 'theme-tet') {
             document.body.classList.add('theme-tet');
+            this.toggleThemeBtn.title = "Giao diện: Tết Truyền Thống";
+        } else if (savedTheme === 'theme-tet-advance') {
+            document.body.classList.add('theme-tet-advance');
+            this.toggleThemeBtn.title = "Giao diện: Tết Cao Cấp";
         }
 
         // Global key listeners
@@ -121,6 +146,16 @@ class BingoCaller {
         this.rulesModal.addEventListener('click', (e) => {
             if (e.target === this.rulesModal) this.closeModal();
         });
+    }
+
+    updateLangButton() {
+        if (this.language === 'vi') {
+            this.toggleLangBtn.querySelector('.btn-icon').textContent = '🇻🇳';
+            this.toggleLangBtn.title = "Ngôn ngữ: Tiếng Việt";
+        } else {
+            this.toggleLangBtn.querySelector('.btn-icon').textContent = '🇺🇸';
+            this.toggleLangBtn.title = "Language: English";
+        }
     }
 
     openModal() {
@@ -272,19 +307,43 @@ class BingoCaller {
         // Cancel previous interrupts
         window.speechSynthesis.cancel();
 
-        // Default English Bingo Call (e.g. "B 12")
-        const text = `${letter} ${num}`;
+        let text;
+        let langCode;
+
+        if (this.language === 'vi') {
+            // Vietnamese Mode
+            langCode = 'vi-VN';
+            // Pronounce letters in Vietnamese style if possible, or just "Bê 5"
+            const vietLetters = { 'B': 'Bê', 'I': 'Y', 'N': 'Nờ', 'G': 'Gờ', 'O': 'Ô' };
+            const vLetter = vietLetters[letter] || letter;
+            text = `${vLetter} ${num}`;
+        } else {
+            // English Mode
+            langCode = 'en-US';
+            text = `${letter} ${num}`;
+        }
+
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
+        utterance.lang = langCode;
 
         const voices = window.speechSynthesis.getVoices();
-        const selectedVoice = voices.find(v => v.lang.includes('en') || v.lang.startsWith('en'));
+        // Try to find a matching voice
+        let selectedVoice = voices.find(v => v.lang.includes(langCode.replace('-', '_')) || v.lang.includes(langCode));
+
+        // Fallback for Vietnamese if exact match not found (sometimes encoded as 'vi')
+        if (!selectedVoice && langCode.startsWith('vi')) {
+            selectedVoice = voices.find(v => v.lang.startsWith('vi'));
+        }
+        // Fallback for English
+        if (!selectedVoice && langCode.startsWith('en')) {
+            selectedVoice = voices.find(v => v.lang.startsWith('en'));
+        }
 
         if (selectedVoice) {
             utterance.voice = selectedVoice;
         }
 
-        utterance.rate = 1.0;
+        utterance.rate = 0.9; // Slightly slower for clarity
         utterance.pitch = 1.0;
 
         window.speechSynthesis.speak(utterance);

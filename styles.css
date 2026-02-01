@@ -787,18 +787,264 @@ body.theme-tet .bingo-card::before {
     background-clip: text;
 }
 
-/* Note: For user selected color to work with outline, we need 'currentColor' stroke.
-   But transparency issue: style="color: XYZ" sets text color.
-   If transparent, it shows nothing?
-   Correction: -webkit-text-stroke-color: [the color].
-   Let's keep it simple for 'modern': Thin font weight or just clean sans-serif.
-   Let's change Modern to just simple Clean Sans.
-*/
-.card-title.style-modern {
-    font-family: 'Outfit', sans-serif;
-    text-transform: uppercase;
-    font-weight: 300;
-    letter-spacing: 4px;
+/* ========================================
+   Advanced Tet Theme (Premium - "The Emperor's Delight")
+   ======================================== */
+body.theme-tet-advance {
+    background: #1a0505;
+    /* Deep Lacquer Red */
+    overflow-x: hidden;
+}
+
+/* Premium Animated Background Layer 1: The Lacquer Depth */
+body.theme-tet-advance::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at center, rgba(139, 0, 0, 0.4) 0%, transparent 80%),
+        /* Deep red core */
+        radial-gradient(circle at 10% 10%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+        /* Top left gold hint */
+        radial-gradient(circle at 90% 90%, rgba(255, 165, 0, 0.1) 0%, transparent 40%);
+    /* Bottom right orange hint */
+    z-index: -2;
+    animation: lacquerRevolve 20s ease-in-out infinite alternate;
+}
+
+/* Premium Animated Background Layer 2: Gold Dust Particles */
+body.theme-tet-advance::after {
+    background-image:
+        radial-gradient(circle, #FFD700 1.5px, transparent 1.5px),
+        radial-gradient(circle, #FFA500 1px, transparent 1px),
+        radial-gradient(circle, #FFFFFF 0.5px, transparent 0.5px);
+    background-size: 150px 150px, 100px 100px, 50px 50px;
+    background-position: 0 0, 30px 30px, 10px 10px;
+    opacity: 0.3;
+    animation: goldDustRise 40s linear infinite;
+}
+
+@keyframes lacquerRevolve {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes goldDustRise {
+    0% {
+        background-position: 0 0, 30px 30px, 10px 10px;
+    }
+
+    100% {
+        background-position: 150px 300px, 130px 230px, 60px 110px;
+    }
+}
+
+/* --- Premium Typography & Utility --- */
+
+/* Metallic Gold Text Effect */
+body.theme-tet-advance .logo-g11 {
+    background: linear-gradient(180deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+}
+
+body.theme-tet-advance .logo-text .highlight {
+    background: linear-gradient(to right, #FFD700, #FDB931, #FFD700);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(253, 185, 49, 0.5);
+}
+
+body.theme-tet-advance .logo-badge {
+    background: linear-gradient(135deg, #4a0000 0%, #2a0a0a 100%);
+    border: 1px solid transparent;
+    border-image: linear-gradient(to bottom, #BF953F, #AA771C) 1;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 10px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+/* Shiny Badge Overlay */
+body.theme-tet-advance .logo-badge::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.3) 50%, transparent 55%);
+    animation: sheen 4s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes sheen {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(150%, 150%) rotate(0deg);
+    }
+}
+
+/* --- 3D Glass Components --- */
+
+/* Master Board Container */
+body.theme-tet-advance .glass-card {
+    background: rgba(30, 5, 5, 0.85);
+    /* Darker, richer */
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    /* Subtle gold border */
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        /* Deep shadow */
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        /* Top highlight */
+        inset 0 0 40px rgba(139, 0, 0, 0.2);
+    /* Inner red red glow */
+    border-radius: var(--radius-xl);
+}
+
+/* Section Titles */
+body.theme-tet-advance .panel-title,
+body.theme-tet-advance .info-item,
+body.theme-tet-advance .section-title,
+body.theme-tet-advance .modal-header h3 {
+    color: #FDB931;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.8);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* --- Board Cells (The "Jewels") --- */
+body.theme-tet-advance .board-cell {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    color: #886644;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover Effect */
+body.theme-tet-advance .board-cell:hover {
+    border-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Active Cell (Winning Number) */
+body.theme-tet-advance .board-cell.active {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+    color: #4a0000;
+    border: 1px solid #FFF;
+    font-weight: 900;
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.8),
+        inset 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+    z-index: 2;
+}
+
+/* --- The Bingo Ball (Dragon Scroll / Pearl) --- */
+body.theme-tet-advance .bingo-ball.popup {
+    /* Golden Pearl Look */
+    background: radial-gradient(circle at 35% 35%, #FFFBE6 0%, #FFD700 30%, #DAA520 70%, #8B4513 100%);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(255, 215, 0, 0.6),
+        inset 0 -10px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.theme-tet-advance .ball-letter,
+body.theme-tet-advance .ball-number {
+    color: #5a0000;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* --- Buttons (Royal Seals) --- */
+body.theme-tet-advance .btn-primary {
+    background: linear-gradient(180deg, #D00000 0%, #8B0000 100%);
+    border: 1px solid #FFD700;
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(139, 0, 0, 0.5);
+    /* Double border feel */
+    position: relative;
+    overflow: hidden;
+}
+
+body.theme-tet-advance .btn-primary::after {
+    /* Glossy reflection */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+    pointer-events: none;
+}
+
+body.theme-tet-advance .btn-primary:hover {
+    background: linear-gradient(180deg, #E00000 0%, #A00000 100%);
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, 0.6),
+        0 0 10px rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+body.theme-tet-advance .btn-secondary {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+}
+
+body.theme-tet-advance .btn-secondary:hover:not(:disabled) {
+    background: rgba(50, 10, 10, 0.6);
+    border-color: #FFD700;
+    color: #FFF;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* --- Scrollbar & Selection --- */
+body.theme-tet-advance ::selection {
+    background: #FFD700;
+    color: #4a0000;
+}
+
+body.theme-tet-advance::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #B8860B, #FFD700);
+    border-radius: 10px;
+    border: 2px solid #2a0a0a;
+}
+
+/* Modal Styling */
+body.theme-tet-advance .modal-content {
+    background: linear-gradient(135deg, #4a0000 0%, #1a0a0a 100%);
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
+}
+
+body.theme-tet-advance .step-num {
+    background: linear-gradient(135deg, #FFD700 0%, #DAA520 100%);
+    color: #4a0000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-weight: 900;
+    border: 1px solid #FFF;
 }
 
 /* Subtitle Styles */

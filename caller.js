@@ -24,6 +24,14 @@ class BingoCaller {
         this.toggleSoundBtn = document.getElementById('toggleSoundBtn');
         this.toggleThemeBtn = document.getElementById('toggleThemeBtn');
 
+        // Rules Modal
+        this.rulesBtn = document.getElementById('rulesBtn');
+        this.rulesModal = document.getElementById('rulesModal');
+        this.closeRulesBtns = [
+            document.getElementById('closeRulesBtn'),
+            document.getElementById('closeRulesBtnBottom')
+        ];
+
         // Audio
         this.soundDraw = document.getElementById('soundDraw');
         this.soundWin = document.getElementById('soundWin'); // Optional use
@@ -98,7 +106,31 @@ class BingoCaller {
                 e.preventDefault();
                 this.drawBtn.click();
             }
+            if (e.code === 'Escape') {
+                this.closeModal();
+            }
         });
+
+        // Rules Modal logic
+        this.rulesBtn.addEventListener('click', () => this.openModal());
+        this.closeRulesBtns.forEach(btn => {
+            if (btn) btn.addEventListener('click', () => this.closeModal());
+        });
+
+        // Close on overlay click
+        this.rulesModal.addEventListener('click', (e) => {
+            if (e.target === this.rulesModal) this.closeModal();
+        });
+    }
+
+    openModal() {
+        this.rulesModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    }
+
+    closeModal() {
+        this.rulesModal.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
     renderMasterBoard() {

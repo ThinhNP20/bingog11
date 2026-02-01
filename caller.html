@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNEXT Bingo Caller - Quay Số</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="caller.css">
+</head>
+
+<body class="caller-body">
+    <div class="app-container caller-layout">
+        <!-- Header -->
+        <header class="header caller-header">
+            <div class="logo">
+                <div class="logo-badge">
+                    <span class="logo-g11">G11</span>
+                </div>
+                <div class="logo-text-wrapper">
+                    <span class="logo-text">VNEXT <span class="highlight">CALLER</span></span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn btn-secondary nav-btn">
+                    <span class="btn-icon">🏠</span> 
+                </a>
+                <button id="toggleSoundBtn" class="btn btn-secondary icon-only" title="Bật/Tắt âm thanh">
+                    <span class="btn-icon">🔊</span>
+                </button>
+                <button id="toggleThemeBtn" class="btn btn-secondary icon-only" title="Đổi giao diện">
+                    <span class="btn-icon">🎨</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content caller-main">
+            <!-- Left Side: Board -->
+            <section class="board-panel glass-card">
+                <div class="panel-header">
+                    <h3 class="panel-title">Bảng Số (Master Board)</h3>
+                    <div class="game-info">
+                        <span class="info-item">Đã gọi: <strong id="callCount">0/75</strong></span>
+                    </div>
+                </div>
+
+                <div class="master-board" id="masterBoard">
+                    <!-- Javascript will generate rows B I N G O -->
+                    <div class="board-row" data-letter="B">
+                        <div class="row-label">B</div>
+                        <div class="row-cells" id="row-B"></div>
+                    </div>
+                    <div class="board-row" data-letter="I">
+                        <div class="row-label">I</div>
+                        <div class="row-cells" id="row-I"></div>
+                    </div>
+                    <div class="board-row" data-letter="N">
+                        <div class="row-label">N</div>
+                        <div class="row-cells" id="row-N"></div>
+                    </div>
+                    <div class="board-row" data-letter="G">
+                        <div class="row-label">G</div>
+                        <div class="row-cells" id="row-G"></div>
+                    </div>
+                    <div class="board-row" data-letter="O">
+                        <div class="row-label">O</div>
+                        <div class="row-cells" id="row-O"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Current Draw & Controls -->
+            <section class="control-panel">
+                <!-- Current Number Display -->
+                <div class="current-draw glass-card">
+                    <div class="draw-animation-container" id="drawContainer">
+                        <div class="bingo-ball big inactive" id="currentBall">
+                            <span class="ball-letter" id="currentToLetter">?</span>
+                            <span class="ball-number" id="currentToNumber">--</span>
+                        </div>
+                    </div>
+                    <div class="last-called">
+                        <span>Gần nhất:</span>
+                        <div class="mini-balls" id="recentCalls">
+                            <!-- JS populated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="actions-panel glass-card">
+                    <div class="main-actions">
+                        <button id="drawBtn" class="btn btn-primary btn-xl">
+                            <span class="btn-icon">🎲</span> QUAY SỐ
+                        </button>
+                    </div>
+                    <div class="sub-actions">
+                        <button id="autoToggleBtn" class="btn btn-secondary">
+                            <span class="btn-icon">⚡</span> Tự động
+                        </button>
+                        <button id="resetBtn" class="btn btn-danger">
+                            <span class="btn-icon">🔄</span> Chơi mới
+                        </button>
+                    </div>
+
+                    <div class="settings-group">
+                        <label class="setting-row">
+                            <span>Tốc độ (Auto): <span id="speedVal">3s</span></span>
+                            <input type="range" id="speedRange" min="2" max="10" step="1" value="3">
+                        </label>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Audio Effects -->
+    <audio id="soundDraw" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"
+        preload="auto"></audio>
+    <audio id="soundWin" src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3" preload="auto"></audio>
+
+    <script src="caller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1463 @@
+/* ========================================
+   VNEXT G11 BINGO - PREMIUM STYLES
+   ======================================== */
+
+:root {
+    /* G11 Brand Colors */
+    --primary: #FF6B35;
+    --primary-dark: #E55A2B;
+    --primary-light: #FF8C5A;
+    --secondary: #FF9F1C;
+    --accent: #FFB627;
+    --gradient: linear-gradient(135deg, #FF6B35 0%, #FF9F1C 50%, #FFB627 100%);
+    --gradient-reverse: linear-gradient(135deg, #FFB627 0%, #FF9F1C 50%, #FF6B35 100%);
+    --gradient-vertical: linear-gradient(180deg, #FF6B35 0%, #FF9F1C 100%);
+
+    /* Dark Theme Colors */
+    --bg-dark: #0A0A14;
+    --bg-card: #12121F;
+    --bg-input: #1A1A2E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #8A8AAD;
+    --border-color: rgba(255, 107, 53, 0.2);
+
+    /* Bingo Card Colors */
+    --card-bg: #FFFFFF;
+    --card-text: #333333;
+    --card-number: #2D2D2D;
+    --card-border: #E8E8E8;
+
+    /* G11 Special */
+    --g11-glow: 0 0 60px rgba(255, 107, 53, 0.4);
+    --g11-glow-intense: 0 0 100px rgba(255, 107, 53, 0.6);
+
+    /* Shadows */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 20px 60px rgba(255, 107, 53, 0.15);
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Animated Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 20% 0%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(255, 159, 28, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 182, 39, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    animation: bgPulse 8s ease-in-out infinite;
+}
+
+@keyframes bgPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Tet Theme Background */
+body.theme-tet {
+    background: #4a0000;
+}
+
+body.theme-tet::before {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 0, 0.2) 0%, transparent 40%);
+}
+
+body.theme-tet::after {
+    /* Apricot Blossom Pattern (Hoa Mai) */
+    background-image:
+        radial-gradient(circle at 50% 50%, #FFD700 2px, transparent 2.5px),
+        /* Pistil */
+        radial-gradient(circle at 50% 50%, transparent 6px, #FFD700 7px, transparent 8px);
+    /* Petals hint */
+    background-size: 60px 60px;
+    opacity: 0.3;
+}
+
+/* G11 Pattern Overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        repeating-linear-gradient(45deg,
+            transparent,
+            transparent 100px,
+            rgba(255, 107, 53, 0.02) 100px,
+            rgba(255, 107, 53, 0.02) 200px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ========================================
+   APP CONTAINER
+   ======================================== */
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   HEADER - G11 BRANDING
+   ======================================== */
+
+/* ========================================
+   HEADER - G11 BRANDING
+   ======================================== */
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg) 0;
+    width: 100%;
+}
+
+.logo {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.header-actions {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    gap: 10px;
+    padding-right: var(--spacing-lg);
+}
+
+@media (max-width: 900px) {
+    .header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .logo {
+        grid-column: auto;
+    }
+
+    .header-actions {
+        grid-column: auto;
+        justify-self: center;
+        padding-right: 0;
+    }
+}
+
+.icon-only {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-btn {
+    text-decoration: none;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.logo-badge {
+    width: 60px;
+    height: 60px;
+    background: #000;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+/* Department Label */
+.logo-badge::after {
+    content: 'DEPT';
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 8px;
+    color: var(--primary);
+    font-weight: 800;
+    opacity: 0.8;
+}
+
+/* Inner border effect */
+.logo-badge::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+@keyframes badgePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: var(--g11-glow);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: var(--g11-glow-intense);
+    }
+}
+
+.logo-g11 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary);
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
+
+.logo-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.logo-text .highlight {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* Tet Theme Logo */
+/* Tet Theme Logo Adjustments */
+body.theme-tet .logo-badge {
+    border-color: #FFD700;
+    background: #8B0000;
+}
+
+body.theme-tet .logo-g11 {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+body.theme-tet .logo-text {
+    color: #FFD700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-tet .logo-badge {
+    background: #8B0000;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* ========================================
+   MAIN CONTENT
+   ======================================== */
+
+.main-content {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: var(--spacing-xl);
+    flex: 1;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   GLASS CARD
+   ======================================== */
+
+.glass-card {
+    background: rgba(18, 18, 31, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0.5;
+}
+
+/* ========================================
+   INPUT PANEL
+   ======================================== */
+
+.input-panel {
+    height: fit-content;
+    position: sticky;
+    top: var(--spacing-lg);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+.title-icon {
+    font-size: 1.5rem;
+}
+
+/* ========================================
+   FORM
+   ======================================== */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex: 1;
+    /* Allow growing in flex container */
+}
+
+.form-group-row {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.form-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.form-input {
+    background: var(--bg-input);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+}
+
+.form-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+/* Number Input */
+.number-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.number-input {
+    text-align: center;
+    width: 100%;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.number-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.number-btn:hover {
+    background: var(--primary);
+    transform: scale(1.05);
+}
+
+.number-btn:active {
+    transform: scale(0.95);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+.btn-primary {
+    background: var(--gradient);
+    color: white;
+    box-shadow: var(--shadow-sm), var(--g11-glow);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.15) 50%,
+            transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.btn-primary:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md), var(--g11-glow-intense);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--bg-input);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--bg-card);
+    border-color: var(--primary);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   OUTPUT PANEL
+   ======================================== */
+
+.output-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-counter {
+    background: var(--gradient);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    color: var(--text-secondary);
+    text-align: center;
+    min-height: 300px;
+    background: rgba(18, 18, 31, 0.5);
+    border-radius: var(--radius-xl);
+    border: 2px dashed var(--border-color);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========================================
+   BINGO CARD - G11 PREMIUM DESIGN
+   ======================================== */
+
+.bingo-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transform: rotate(-1deg);
+    transition: var(--transition-normal);
+    animation: cardAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    position: relative;
+}
+
+.bingo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-lg);
+    padding: 3px;
+    background: var(--gradient);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+}
+
+.bingo-card.winner {
+    animation: winnerPulse 1s ease-in-out infinite;
+    box-shadow: 0 0 30px #FF9F1C;
+    border: 2px solid #FFB627;
+    z-index: 10;
+}
+
+/* Tet Theme Card */
+body.theme-tet .bingo-card {
+    background: #FFFCE8;
+    /* Creamy paper */
+    border: 2px solid #D00000;
+    box-shadow: 0 10px 30px rgba(208, 0, 0, 0.3);
+}
+
+body.theme-tet .bingo-card::before {
+    background: linear-gradient(135deg, #D00000 0%, #FFD700 100%);
+    padding: 5px;
+    /* Thicker gold border */
+}
+
+@keyframes winnerPulse {
+
+    0%,
+    100% {
+        transform: scale(1.05);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* =========================================
+   Design Styles
+   ========================================= */
+
+/* Default Style */
+.card-title.style-default {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Neon Glow */
+.card-title.style-neon {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
+    letter-spacing: 2px;
+}
+
+/* Vintage */
+.card-title.style-vintage {
+    font-family: 'Georgia', serif;
+    text-transform: capitalize;
+    font-weight: bold;
+    letter-spacing: -1px;
+    font-style: italic;
+}
+
+/* Modern Outline */
+.card-title.style-modern {
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent !important;
+    /* Force transparent fill */
+    background-clip: text;
+}
+
+/* Note: For user selected color to work with outline, we need 'currentColor' stroke.
+   But transparency issue: style="color: XYZ" sets text color.
+   If transparent, it shows nothing?
+   Correction: -webkit-text-stroke-color: [the color].
+   Let's keep it simple for 'modern': Thin font weight or just clean sans-serif.
+   Let's change Modern to just simple Clean Sans.
+*/
+.card-title.style-modern {
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 4px;
+}
+
+/* Subtitle Styles */
+.card-subtitle.style-italic {
+    font-style: italic;
+}
+
+.card-subtitle.style-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bingo-card:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+.bingo-card:hover {
+    transform: rotate(0deg) scale(1.02) translateY(-5px);
+    box-shadow: var(--shadow-lg), var(--g11-glow);
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg) translateY(30px);
+    }
+}
+
+/* Card Header - G11 Style */
+.card-header {
+    background: var(--gradient);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative Pattern */
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        repeating-linear-gradient(-45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.05) 10px,
+            rgba(255, 255, 255, 0.05) 20px);
+}
+
+/* G11 Badge in Corner */
+.card-header::after {
+    content: 'G11';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+}
+
+.card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-subtitle {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 6px;
+    position: relative;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* Tet Theme Header */
+body.theme-tet .card-header {
+    background: linear-gradient(to right, #D00000, #ff4d4d);
+    border-bottom: 2px solid #FFD700;
+}
+
+body.theme-tet .card-header::after {
+    content: 'TẾT 2026';
+    background: #FFD700;
+    color: #D00000;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    font-size: 0.85rem;
+    /* Adjust positioning to avoid overlap */
+    top: 5px;
+    right: 5px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.theme-tet .card-title {
+    font-family: 'Dancing Script', cursive;
+    color: #FFD700;
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 0 #8B0000;
+}
+
+body.theme-tet .card-subtitle {
+    font-family: 'Pangolin', cursive;
+    color: #FFF;
+    font-size: 0.9rem;
+}
+
+body.theme-tet .bingo-letter {
+    font-family: 'Dancing Script', cursive;
+    background: #D00000 !important;
+    color: #FFD700 !important;
+    border: 1px solid #FFD700 !important;
+    font-size: 1.5rem;
+}
+
+body.theme-tet .number-cell {
+    font-family: 'Pangolin', cursive;
+    color: #8B0000;
+    border-color: #FFD700;
+}
+
+body.theme-tet .card-grid {
+    border: 2px solid #D00000 !important;
+}
+
+body.theme-tet .number-cell.marked {
+    background: #D00000;
+    color: #FFD700;
+}
+
+body.theme-tet .number-cell.marked::after {
+    content: '🌸';
+    /* Blossom icon for mark */
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+body.theme-tet .free-space {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+    color: #D00000 !important;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Card Grid */
+.card-grid {
+    display: grid;
+    /* grid-template-columns is set inline by JS */
+    margin: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 2px solid #FF6B35;
+}
+
+/* Marked Cell */
+.number-cell.marked {
+    background: #FF6B35;
+    color: white;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.number-cell.marked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+.number-cell.marked.free-space {
+    background: linear-gradient(135deg, #FF6B35 0%, #FF9F1C 100%);
+}
+
+.number-cell.marked.free-space .free-space-icon,
+.number-cell.marked.free-space span {
+    color: white;
+}
+
+.number-cell {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* BINGO Letters */
+.bingo-letters {
+    display: contents;
+}
+
+.bingo-letter {
+    background: var(--gradient);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 12px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    position: relative;
+}
+
+.bingo-letter::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+/* Number Cells */
+.number-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--card-number);
+    background: white;
+    border: 1px solid var(--card-border);
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.number-cell:hover {
+    background: #FFF5EE;
+    color: var(--primary);
+    transform: scale(1.08);
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+/* Free Space - G11 Spirit */
+.free-space {
+    background: linear-gradient(135deg, #FFF5EE 0%, #FFE8DC 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px;
+    text-align: center;
+    line-height: 1.1;
+    position: relative;
+    overflow: hidden;
+}
+
+.free-space::before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border: 2px dashed var(--primary);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: rotateBorder 10s linear infinite;
+}
+
+@keyframes rotateBorder {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.free-space-icon {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.free-space span {
+    position: relative;
+    z-index: 1;
+}
+
+.free-space-g11 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+}
+
+/* Card Number */
+.card-number {
+    text-align: center;
+    padding: var(--spacing-xs);
+    color: #888;
+    font-size: 0.75rem;
+    background: linear-gradient(180deg, #F8F8F8 0%, #F0F0F0 100%);
+    font-weight: 500;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: auto;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+.print-area {
+    display: none;
+}
+
+@media print {
+    @page {
+        margin: 10mm;
+        size: A4;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    html,
+    body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    body::before,
+    body::after {
+        display: none !important;
+    }
+
+    .header,
+    .footer,
+    .input-panel,
+    .output-header,
+    .empty-state,
+    .print-area {
+        display: none !important;
+    }
+
+    .app-container {
+        display: block !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .main-content {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .output-panel {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .cards-container {
+        display: grid !important;
+        grid-template-columns: repeat(var(--print-cols, 2), 1fr) !important;
+        gap: 15px !important;
+        padding: 0 !important;
+    }
+
+    /* Print Layout Overrides */
+    [data-print-layout="1"] .cards-container {
+        grid-template-columns: 1fr !important;
+    }
+
+    [data-print-layout="1"] .bingo-card {
+        height: auto;
+        /* Adapt to content */
+        min-height: 50vh;
+        /* Optional min height */
+        font-size: 1.5rem;
+        /* Larger text */
+        margin-bottom: 20px;
+    }
+
+    [data-print-layout="1"] .number-cell {
+        font-size: 2.5rem !important;
+    }
+
+    [data-print-layout="1"] .bingo-letter {
+        font-size: 2.5rem !important;
+    }
+
+    [data-print-layout="4"] .cards-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    [data-print-layout="4"] .bingo-card {
+        height: auto;
+        /* Adapt to content */
+        /* 4 cards fitting roughly */
+    }
+
+    [data-print-layout="6"] .cards-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    [data-print-layout="6"] .bingo-card {
+        height: auto;
+        margin-bottom: 5px;
+        border-width: 1px !important;
+        /* Thinner border */
+    }
+
+    [data-print-layout="6"] .card-header {
+        padding: 5px !important;
+    }
+
+    [data-print-layout="6"] .card-title {
+        font-size: 0.9rem !important;
+    }
+
+    [data-print-layout="6"] .card-subtitle {
+        font-size: 0.6rem !important;
+    }
+
+    [data-print-layout="6"] .bingo-letter {
+        padding: 4px !important;
+        font-size: 0.8rem !important;
+    }
+
+    [data-print-layout="6"] .number-cell {
+        font-size: 0.9rem !important;
+        padding: 0 !important;
+        height: 30px;
+        /* Force compact height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    [data-print-layout="6"] .free-space-icon {
+        font-size: 0.8rem;
+    }
+
+    [data-print-layout="6"] .free-space-g11 {
+        font-size: 0.4rem;
+    }
+
+    /* Adjust Tet Badge for 6 layout */
+    body.theme-tet[data-print-layout="6"] .card-header::after {
+        font-size: 0.5rem !important;
+        padding: 1px 4px !important;
+        top: 2px !important;
+        right: 2px !important;
+    }
+
+    .bingo-card {
+        transform: none !important;
+        box-shadow: none !important;
+        border: 2px solid #FF6B35 !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        /* background: white !important;  <-- REMOVED enforced white background */
+        animation: none !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+
+    .bingo-card::before {
+        display: none !important;
+    }
+
+    .bingo-card:nth-child(even) {
+        transform: none !important;
+    }
+
+    .card-header {
+        /* background: #FF6B35 !important; <-- REMOVED enforced background */
+        /* Ensure background prints are enabled in browser settings */
+        color: white;
+        text-shadow: none !important;
+        padding: 12px !important;
+    }
+
+    .card-header::before {
+        display: none !important;
+    }
+
+    /* .card-header::after background override removed to support Tet Theme */
+
+    /* Fix Tet Theme Badge in Print */
+    body.theme-tet .card-header::after {
+        background: #FFD700 !important;
+        color: #D00000 !important;
+        top: 2px !important;
+        right: 2px !important;
+        font-size: 0.6rem !important;
+        padding: 2px 6px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .card-title {
+        /* color: white !important;  <-- REMOVE this to allow custom inline color */
+        font-size: 1.2rem !important;
+    }
+
+    /* .card-subtitle removed from print overrides */
+
+    .bingo-letter {
+        /* background: #FF6B35 !important; <-- REMOVED enforced background */
+        /* color: white !important; <-- REMOVED enforced color */
+        border: 1px solid #ddd !important;
+        padding: 8px !important;
+        font-size: 1rem !important;
+    }
+
+    .bingo-letter::after {
+        display: none !important;
+    }
+
+    .number-cell {
+        /* background: white !important; <-- REMOVED enforced white background */
+        /* color: #333 !important; <-- REMOVED enforced text color */
+        border: 1px solid #ccc !important;
+        font-size: 1.1rem !important;
+    }
+
+    /* .free-space overrides removed */
+
+    .free-space::before {
+        display: none !important;
+    }
+
+    .card-grid {
+        border: 2px solid #FF6B35 !important;
+        margin: 8px !important;
+    }
+
+    .card-number {
+        background: #f5f5f5 !important;
+        color: #666 !important;
+    }
+
+    .bingo-card:hover {
+        transform: none !important;
+    }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: var(--spacing-sm);
+    }
+
+    .logo {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo-text-wrapper {
+        align-items: center;
+    }
+
+    .logo-text {
+        font-size: 1.75rem;
+    }
+
+    .input-panel {
+        position: static;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+.bingo-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bingo-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.bingo-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.bingo-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.bingo-card:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.bingo-card:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.bingo-card:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.bingo-card:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+.bingo-card:nth-child(9) {
+    animation-delay: 0.8s;
+}
+
+.bingo-card:nth-child(10) {
+    animation-delay: 0.9s;
+}

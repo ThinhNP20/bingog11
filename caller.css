@@ -1,0 +1,561 @@
+/* caller.css - Styles specific to Bingo Number Caller */
+
+/* Layout Overrides */
+.caller-body {
+    overflow: hidden;
+    /* Prevent scrolling usually */
+}
+
+.caller-layout .main-content {
+    grid-template-columns: 2fr 1fr;
+    /* Board is wider */
+    height: auto;
+    flex: 1;
+    gap: var(--spacing-sm);
+    min-height: 0;
+    /* Allow shrinking */
+}
+
+/* Force container to 100vh and no scroll */
+.caller-layout.app-container {
+    height: 100vh;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+    .caller-layout .main-content {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .caller-body {
+        overflow-y: auto;
+    }
+}
+
+/* Header Adjustments - FINAL COMPACT VERSION */
+.caller-header {
+    margin-bottom: 0 !important;
+    padding: var(--spacing-xs) var(--spacing-md) !important;
+    height: auto !important;
+    min-height: 50px;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    gap: 0 !important;
+}
+
+/* Actions on LEFT */
+.caller-header .header-actions {
+    grid-column: 1 !important;
+    justify-self: start !important;
+    display: flex !important;
+    gap: 8px !important;
+    padding: 0 !important;
+}
+
+/* Logo in CENTER */
+.caller-header .logo {
+    grid-column: 2 !important;
+    justify-self: center !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+}
+
+/* Smaller Buttons */
+.caller-header .btn {
+    padding: 6px 12px !important;
+    font-size: 0.8rem !important;
+    height: 34px !important;
+}
+
+.caller-header .icon-only {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+}
+
+.caller-header .logo {
+    flex-shrink: 0 !important;
+}
+
+.caller-header .logo-badge {
+    width: 48px !important;
+    height: 48px !important;
+    flex-shrink: 0 !important;
+}
+
+.caller-header .logo-g11 {
+    font-size: 1.1rem !important;
+}
+
+.caller-header .logo-text {
+    font-size: 1.5rem !important;
+    flex-shrink: 0 !important;
+}
+
+/* Place Actions on Left, Logo in Center */
+/* Clean up duplicates and ensure alignment */
+.caller-header .logo-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .caller-header {
+        grid-template-columns: 1fr auto !important;
+        /* Actions Left, Logo Right/Center */
+    }
+}
+
+/* Board Panels Alignment */
+.board-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 5px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+    /* Reduced */
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.master-board {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 5px;
+    /* Reduced from spacing-sm */
+    flex: 1;
+}
+
+.board-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.row-label {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: white;
+    box-shadow: var(--g11-glow);
+    flex-shrink: 0;
+}
+
+.row-cells {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 4px;
+    /* Reduced from 6px */
+}
+
+.board-cell {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    /* Smaller font */
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.board-cell.active {
+    background: var(--text-primary);
+    color: var(--primary-dark);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-weight: 800;
+    transform: scale(1.1);
+    border-color: white;
+    z-index: 2;
+}
+
+.board-cell.just-called {
+    animation: cellPulse 2s infinite;
+    background: var(--gradient);
+    color: white;
+    border: none;
+}
+
+@keyframes cellPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+    }
+
+    70% {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
+    }
+}
+
+/* Control Panel */
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Current Draw Display */
+.current-draw {
+    flex: 2;
+    background: radial-gradient(circle at center, rgba(30, 30, 50, 0.8), rgba(10, 10, 20, 0.95));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+}
+
+.draw-animation-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+/* 3D Bingo Ball */
+.bingo-ball {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #e0e0e0 20%, #9e9e9e 100%);
+    box-shadow:
+        inset -8px -8px 30px rgba(0, 0, 0, 0.5),
+        15px 15px 30px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+/* Ball coloring by letter */
+.ball-B {
+    background: radial-gradient(circle at 30% 30%, #4facfe 0%, #00f2fe 100%);
+}
+
+.ball-I {
+    background: radial-gradient(circle at 30% 30%, #fa709a 0%, #fee140 100%);
+}
+
+.ball-N {
+    background: radial-gradient(circle at 30% 30%, #43e97b 0%, #38f9d7 100%);
+}
+
+.ball-G {
+    background: radial-gradient(circle at 30% 30%, #ff0844 0%, #ffb199 100%);
+}
+
+.ball-O {
+    background: radial-gradient(circle at 30% 30%, #f6d365 0%, #fda085 100%);
+}
+
+/* Default white/grey if inactive */
+.bingo-ball.inactive {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+/* Sphere highlight */
+.bingo-ball::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 25%;
+    height: 15%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    filter: blur(2px);
+    transform: rotate(-45deg);
+}
+
+/* Sphere stripe for decoration */
+.bingo-ball::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.ball-letter {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: -10px;
+    z-index: 5;
+}
+
+.ball-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #222;
+    z-index: 5;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+    line-height: 1;
+}
+
+/* Animations */
+.rolling {
+    animation: rollBall 0.5s linear infinite;
+}
+
+@keyframes rollBall {
+    0% {
+        transform: scale(0.8) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(0.8) rotate(180deg);
+    }
+
+    100% {
+        transform: scale(0.8) rotate(360deg);
+    }
+}
+
+.popup {
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Recent Calls */
+.last-called {
+    margin-top: var(--spacing-md);
+    width: 100%;
+    text-align: center;
+}
+
+.last-called span {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.mini-balls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    height: 50px;
+}
+
+.mini-ball {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #333;
+    font-size: 0.9rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Colors for mini balls */
+.mini-ball.b-col {
+    background: #00f2fe;
+}
+
+.mini-ball.i-col {
+    background: #fee140;
+}
+
+.mini-ball.n-col {
+    background: #38f9d7;
+}
+
+.mini-ball.g-col {
+    background: #ffb199;
+}
+
+.mini-ball.o-col {
+    background: #fda085;
+}
+
+
+/* Actions Panel */
+.main-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.btn-xl {
+    font-size: 1.5rem;
+    padding: 1.5rem 3rem;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sub-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: var(--spacing-md);
+}
+
+.btn-danger {
+    background: #ff3547;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: #ff1a2e;
+}
+
+/* Settings */
+.settings-group {
+    background: rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-select-mini {
+    background: var(--bg-input);
+    color: white;
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* ========================================
+   TET THEME OVERRIDES
+   ======================================== */
+
+/* Tet Board */
+body.theme-tet {
+    background-color: #550000;
+    /* Fallback */
+    /* If you have a pattern, add it here, or ensure existing one doesn't break layout */
+    overflow: hidden;
+}
+
+body.theme-tet .caller-header {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+body.theme-tet .row-label {
+    background: linear-gradient(135deg, #D00000, #FF0000);
+    box-shadow:
+        0 0 10px rgba(255, 215, 0, 0.4),
+        inset 0 0 0 1px #FFD700;
+    /* Fake border */
+    color: #FFD700;
+    border: none;
+    /* remove real border */
+}
+
+body.theme-tet .board-cell {
+    border-color: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+}
+
+body.theme-tet .board-cell.active {
+    background: #FFD700;
+    color: #D00000;
+    box-shadow: 0 0 15px #D00000;
+}
+
+/* Tet Ball */
+body.theme-tet .bingo-ball {
+    background: radial-gradient(circle at 30% 30%, #FFD700 0%, #FFA500 50%, #D00000 100%);
+    box-shadow:
+        inset -5px -5px 20px rgba(100, 0, 0, 0.5),
+        10px 10px 20px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 215, 0, 0.3),
+        inset 0 0 0 2px #FFD700;
+    /* Fake border */
+    border: none;
+    /* remove real border */
+}
+
+body.theme-tet .ball-number {
+    color: #8B0000;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+body.theme-tet .ball-letter {
+    color: rgba(139, 0, 0, 0.6);
+}
+
+/* Tet Buttons */
+body.theme-tet .btn-primary {
+    background: linear-gradient(135deg, #D00000 0%, #FFD700 100%);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px #FFD700;
+    border: none;
+}
+
+body.theme-tet .current-draw {
+    background: radial-gradient(circle at center, #2a0a0a, #000);
+    border: 1px solid #4a0000;
+}

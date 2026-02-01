@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VNEXT G11 Bingo Card Generator - Tạo thẻ Bingo chuyên nghiệp">
+    <title>VNEXT G11 Bingo Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800;900&family=Dancing+Script:wght@700&family=Pangolin&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-badge">
+                    <span class="logo-g11">G11</span>
+                </div>
+                <div class="logo-text-wrapper">
+                    <span class="logo-text">VNEXT <span class="highlight">BINGO</span></span>
+                    <span class="logo-tagline">Kết nối năng lượng - Bùng nổ sáng tạo</span>
+                    <span class="version-badge"
+                        style="color: #FF6B35; font-size: 0.8rem; border: 1px solid #FF6B35; padding: 2px 6px; border-radius: 4px; margin-top: 5px; display: inline-block;">v2.2
+                        (Mới nhất)</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn btn-secondary nav-btn">
+                    <span class="btn-icon">🏠</span> Trang chủ
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Panel -->
+            <section class="input-panel glass-card">
+                <h2 class="section-title">
+                    <span class="title-icon">⚙️</span>
+                    Cấu hình thẻ Bingo
+                </h2>
+
+                <form id="bingoForm" class="form">
+                    <div class="form-group">
+                        <label for="appTheme" class="form-label">Giao diện (Theme)</label>
+                        <select id="appTheme" class="form-input">
+                            <option value="theme-default">Mặc định (G11 Orange)</option>
+                            <option value="theme-tet">🧧 Tết Nguyên Đán (Lucky Red)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardTitle" class="form-label">Tiêu đề thẻ</label>
+                        <input type="text" id="cardTitle" class="form-input" placeholder="VD: VNEXT G11 BINGO"
+                            value="VNEXT G11 BINGO" required>
+
+                        <div class="style-controls" style="display: flex; gap: 10px; margin-top: 10px;">
+                            <input type="color" id="titleColor" class="form-input color-input" value="#FFFFFF"
+                                title="Màu chữ">
+                            <select id="titleStyle" class="form-input">
+                                <option value="style-default">Mặc định</option>
+                                <option value="style-neon">Neon Glow</option>
+                                <option value="style-vintage">Cổ điển</option>
+                                <option value="style-modern">Hiện đại (Outline)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardSubtitle" class="form-label">Phụ đề (tùy chọn)</label>
+                        <input type="text" id="cardSubtitle" class="form-input"
+                            placeholder="VD: Kết nối năng lượng - Bùng nổ sáng tạo"
+                            value="Kết nối năng lượng - Bùng nổ sáng tạo">
+
+                        <div class="style-controls" style="display: flex; gap: 10px; margin-top: 10px;">
+                            <input type="color" id="subtitleColor" class="form-input color-input" value="#FFDBB5"
+                                title="Màu chữ phụ">
+                            <select id="subtitleStyle" class="form-input">
+                                <option value="style-default">Mặc định</option>
+                                <option value="style-italic">In nghiêng</option>
+                                <option value="style-uppercase">IN HOA</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardCount" class="form-label">Số lượng thẻ</label>
+                        <div class="number-input-wrapper">
+                            <button type="button" class="number-btn" id="decreaseBtn">−</button>
+                            <input type="number" id="cardCount" class="form-input number-input" min="1" max="1000"
+                                value="4" required>
+                            <button type="button" class="number-btn" id="increaseBtn">+</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="freeSpaceCount" class="form-label">Số ô VNEXT G11 (Free Space)</label>
+                        <input type="number" id="freeSpaceCount" class="form-input" min="0" max="10" value="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxNumber" class="form-label">Số lớn nhất (1-99)</label>
+                        <input type="number" id="maxNumber" class="form-input" min="25" max="99" value="75" required>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="gridCols" class="form-label">Số Cột</label>
+                            <input type="number" id="gridCols" class="form-input" min="3" max="7" value="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gridRows" class="form-label">Số Dòng</label>
+                            <input type="number" id="gridRows" class="form-input" min="3" max="7" value="5" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="printLayout" class="form-label">Bố cục in</label>
+                        <select id="printLayout" class="form-input">
+                            <option value="1">1 Thẻ / trang</option>
+                            <option value="2">2 thẻ/trang</option>
+                            <option value="4" selected>4 thẻ/trang</option>
+                            <option value="6">6 thẻ/trang</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="winCondition" class="form-label">Kiểu trúng thưởng</label>
+                        <select id="winCondition" class="form-input">
+                            <option value="standard" selected>Dãy ngang/dọc/chéo (Standard)</option>
+                            <option value="fullhouse">Full House (Toàn bộ ô)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="generateBtn">
+                            <span class="btn-icon">🎲</span>
+                            Tạo thẻ Bingo
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="printBtn" disabled>
+                            <span class="btn-icon">🖨️</span>
+                            In thẻ
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Output Panel -->
+            <section class="output-panel">
+                <div class="output-header">
+                    <h2 class="section-title">
+                        <span class="title-icon">🎯</span>
+                        Thẻ Bingo của bạn
+                    </h2>
+                    <span class="card-counter" id="cardCounter">0 thẻ</span>
+                </div>
+
+                <div class="cards-container" id="cardsContainer">
+                    <div class="empty-state">
+                        <div class="empty-icon">🎱</div>
+                        <p>Nhập thông tin và nhấn "Tạo thẻ Bingo" để bắt đầu</p>
+                        <p class="small-text">Click vào ô số để đánh dấu. Hệ thống sẽ tự động chúc mừng khi bạn trúng
+                            thưởng!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>VNEXT G11 Bingo Generator © 2026 - Thiết kế với ❤️ bởi G11 Spirit</p>
+        </footer>
+    </div>
+
+    <!-- Print Template (Hidden) -->
+    <div id="printArea" class="print-area"></div>
+
+    <script src="generator.js?v=2.2"></script>
+</body>
+
+</html>

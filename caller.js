@@ -314,7 +314,7 @@ class BingoCaller {
             // Vietnamese Mode
             langCode = 'vi-VN';
             // Pronounce letters in Vietnamese style if possible, or just "Bê 5"
-            const vietLetters = { 'B': 'Bê', 'I': 'Y', 'N': 'Nờ', 'G': 'Gờ', 'O': 'Ô' };
+            const vietLetters = { 'B': 'Bê', 'I': 'I', 'N': 'Nờ', 'G': 'Gờ', 'O': 'Ô' };
             const vLetter = vietLetters[letter] || letter;
             text = `${vLetter} ${num}`;
         } else {
